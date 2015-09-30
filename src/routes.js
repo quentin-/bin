@@ -2,7 +2,6 @@ const Bin = require('./model/bin');
 
 const routes = (app) => {
   app.get('/v1/creels/:uid', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
     new Bin(req.params.uid).getRequests((err, requests) => {
       res.send({
         uid: req.params.uid,
