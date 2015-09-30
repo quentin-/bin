@@ -1,0 +1,15 @@
+api:
+  build: ./
+  command: npm start
+  env_file: .env
+  environment:
+    PORT: 8080
+    REDIS_URL: redis://redis
+  volumes:
+    - ".:/home/app"
+  ports:
+    - "8080:8080"
+  links:
+    - "redis"
+redis:
+  image: redis:2.8.12
