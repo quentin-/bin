@@ -1,6 +1,7 @@
 # httpcreel
 
 ```bash
+cp .env.default .env
 docker-compose up
 ```
 
@@ -32,4 +33,12 @@ curl $(docker-machine ip default):8080/v1/creels/abc
       }
    ]
 }
+```
+
+# test
+
+Too run the tests in docker you will need to set the DOCKER_MACHINE_IP in your .env file
+
+```
+npm run docker-test
 ```
