@@ -26,12 +26,12 @@ const routes = (app) => {
       res.status(response ? response.status : 200);
       res.send(response ? response.body : {});
     });
-  }
+  };
 
   app.get('/bins/:uid', binHandler);
   app.post('/bins/:uid', binHandler);
   app.patch('/bins/:uid', binHandler);
   app.delete('/bins/:uid', binHandler);
-}
+};
 
 module.exports = routes;

@@ -1,6 +1,6 @@
+const redis = require('../src/lib/redis.js');
 const superagent = require('superagent');
 const assert = require('assert');
-const redis = require('../src/lib/redis.js');
 
 const docker_host = process.env.DOCKER_MACHINE_IP;
 const port = process.env.port || 8080;
