@@ -40,7 +40,7 @@ curl $(docker-machine ip default):8080/v1/bins/abc
 
 ```bash
 # set the reponse of a bin
-curl $(docker-machine ip default):8080/v1/bins/1234/reply \
+curl $(docker-machine ip default):8080/v1/bins/abc/reply \
   -X POST \
   -d '{"status":"404","body":{"foo":"bar"}}'
 ```
