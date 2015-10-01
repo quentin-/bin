@@ -1,4 +1,4 @@
-# httpcreel
+# Bins
 
 ```bash
 cp .env.default .env
@@ -6,8 +6,11 @@ docker-compose up
 ```
 
 ```bash
-curl $(docker-machine ip default):8080/creels/abc?foo=bar
-curl $(docker-machine ip default):8080/v1/creels/abc
+# make a http request to a bin
+curl $(docker-machine ip default):8080/bins/abc?foo=bar
+
+# fetch the requests
+curl $(docker-machine ip default):8080/v1/bins/abc
 ```
 
 ```json
@@ -33,6 +36,23 @@ curl $(docker-machine ip default):8080/v1/creels/abc
       }
    ]
 }
+```
+
+```bash
+# set the reponse of a bin
+curl $(docker-machine ip default):8080/v1/bins/1234/reply \
+  -X POST \
+  -d '{"status":"404","body":{"foo":"bar"}}'
+```
+
+```bash
+# make a http request to a bin
+curl $(docker-machine ip default):8080/bins/abc?foo=bar
+```
+
+```bash
+# received a 404 response
+{"foo": "bar"}
 ```
 
 # test
