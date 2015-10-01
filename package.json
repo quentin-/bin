@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --es_staging --use-strict --harmony_arrow_functions app.js",
+    "dev": "nodemon --es_staging --use-strict --harmony_arrow_functions app.js",
     "test": "mocha --compilers js:babel/register",
     "docker-test": "./bin/docker-test"
   },
