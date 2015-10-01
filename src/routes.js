@@ -1,7 +1,7 @@
 const Bin = require('./model/bin');
 
 const routes = (app) => {
-  app.get('/v1/creels/:uid', (req, res) => {
+  app.get('/v1/bins/:uid', (req, res) => {
     new Bin(req.params.uid).getRequests((err, requests) => {
       res.send({
         uid: req.params.uid,
@@ -10,15 +10,28 @@ const routes = (app) => {
     });
   });
 
+  app.post('/v1/bins/:uid/reply', (req, res) => {
+    const status = req.body.status;
+    const body = req.body.body;
+
+    new Bin(req.params.uid).setResponse(status, body, (err) => {
+      res.send({});
+    });
+  });
+
   const binHandler = (req, res) => {
-    new Bin(req.params.uid).addRequest(req);
-    res.send({});
+    const bin = new Bin(req.params.uid);
+    bin.addRequest(req);
+    bin.getResponse((err, response) => {
+      res.status(response ? response.status : 200);
+      res.send(response ? response.body : {});
+    });
   }
 
-  app.get('/creels/:uid', binHandler);
-  app.post('/creels/:uid', binHandler);
-  app.patch('/creels/:uid', binHandler);
-  app.delete('/creels/:uid', binHandler);
+  app.get('/bins/:uid', binHandler);
+  app.post('/bins/:uid', binHandler);
+  app.patch('/bins/:uid', binHandler);
+  app.delete('/bins/:uid', binHandler);
 }
 
 module.exports = routes;

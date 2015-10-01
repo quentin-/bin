@@ -18,6 +18,19 @@ class Bin {
     return this.uid;
   }
 
+  setResponse(status, body, callback) {
+    const response = {status: status, body: body};
+    redis.set('response_' + this.uid, JSON.stringify(response), (err) => {
+      callback(err);
+    });
+  }
+
+  getResponse(callback) {
+    redis.get('response_' + this.uid, (err, resp) => {
+      callback(err, JSON.parse(resp));
+    });
+  }
+
   addRequest(req) {
     const request = new Request(req);
     redis.lpush(this.uid, JSON.stringify(request));
