@@ -11,8 +11,8 @@ const routes = (app) => {
   });
 
   app.post('/v1/bins/:uid/reply', (req, res) => {
-    const status = req.body.status;
-    const body = req.body.body;
+    const status = req.body ? req.body.status : 200;
+    const body = req.body ? req.body.body : {};
 
     new Bin(req.params.uid).setResponse(status, body, (err) => {
       res.send({});
